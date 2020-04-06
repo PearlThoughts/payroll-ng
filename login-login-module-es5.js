@@ -204,6 +204,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.loading = true;
           this.authService.login(this.f.username.value, this.f.password.value).subscribe(function (response) {
             if (response.userId != null) {
+              console.log(2);
+
               _this.router.navigate([_this.returnUrl]);
             } else {
               var key = Object.keys(response)[0];

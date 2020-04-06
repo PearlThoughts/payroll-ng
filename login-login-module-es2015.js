@@ -119,6 +119,7 @@ let LoginComponent = class LoginComponent {
             .login(this.f.username.value, this.f.password.value)
             .subscribe((response) => {
             if (response.userId != null) {
+                console.log(2);
                 this.router.navigate([this.returnUrl]);
             }
             else {

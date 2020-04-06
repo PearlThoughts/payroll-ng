@@ -1754,6 +1754,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 _this.saveAuthData(token, expirationDate, _this.userId);
               }
+
+              console.log(1);
             }
 
             return user;

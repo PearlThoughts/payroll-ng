@@ -926,6 +926,7 @@ let AuthService = class AuthService {
                     console.log(expirationDate);
                     this.saveAuthData(token, expirationDate, this.userId);
                 }
+                console.log(1);
             }
             return user;
         }));
