@@ -102,7 +102,7 @@ let LoginComponent = class LoginComponent {
         }
         this.loginForm = this.formBuilder.group({
             username: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
-            password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+            password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
         });
     }
     get f() {
@@ -117,7 +117,7 @@ let LoginComponent = class LoginComponent {
         this.loading = true;
         this.authService
             .login(this.f.username.value, this.f.password.value)
-            .subscribe(response => {
+            .subscribe((response) => {
             if (response.userId != null) {
                 this.router.navigate([this.returnUrl]);
             }

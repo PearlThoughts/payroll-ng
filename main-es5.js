@@ -1753,11 +1753,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 console.log(expirationDate);
 
                 _this.saveAuthData(token, expirationDate, _this.userId);
-
-                _this.router.navigate(["/"]);
               }
-
-              localStorage.setItem("access_token", user.token);
             }
 
             return user;
