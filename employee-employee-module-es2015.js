@@ -267,12 +267,12 @@ let EmployeeComponent = class EmployeeComponent {
     }
     ngOnInit() {
         this.employeeService.get().subscribe(() => { });
-        this.employeeService.getEmployeesData().subscribe(data => {
+        this.employeeService.getEmployeesData().subscribe((data) => {
             this.employees = data.employees;
         });
     }
     onDeleteClick(employeeId) {
-        this.employeeService.delete(employeeId).subscribe(data => {
+        this.employeeService.delete(employeeId).subscribe((data) => {
             this.employeeService.get().subscribe(() => { });
         });
     }

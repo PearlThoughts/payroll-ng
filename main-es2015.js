@@ -391,6 +391,7 @@ let AppComponent = class AppComponent {
         this.authService = authService;
     }
     ngOnInit() {
+        console.log("app cop");
         this.authService.autoAuthUser();
     }
 };
@@ -943,6 +944,7 @@ let AuthService = class AuthService {
             this.isAuthenticated = true;
             this.userId = authInformation.userId;
             this.setAuthTimer(expiresIn / 1000);
+            console.log("token found");
             this.authStatusListener.next(true);
         }
     }
@@ -976,6 +978,7 @@ let AuthService = class AuthService {
         const expirationDate = localStorage.getItem("expiration");
         const userId = localStorage.getItem("userId");
         if (!token || !expirationDate) {
+            console.log("token not found");
             return;
         }
         return {

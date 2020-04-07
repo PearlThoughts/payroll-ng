@@ -852,6 +852,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AppComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          console.log("app cop");
           this.authService.autoAuthUser();
         }
       }]);
@@ -1778,6 +1779,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.isAuthenticated = true;
             this.userId = authInformation.userId;
             this.setAuthTimer(expiresIn / 1000);
+            console.log("token found");
             this.authStatusListener.next(true);
           }
         }
@@ -1824,6 +1826,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var userId = localStorage.getItem("userId");
 
           if (!token || !expirationDate) {
+            console.log("token not found");
             return;
           }
 
