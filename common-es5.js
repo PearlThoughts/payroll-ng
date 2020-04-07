@@ -209,7 +209,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _classCallCheck(this, EmployeeService);
 
         this.http = http;
-        this.access_token = localStorage.getItem("access_token");
+        this.access_token = localStorage.getItem("token");
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.access_token
@@ -385,7 +385,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         this.http = http;
         this.datePipe = datePipe;
-        this.access_token = localStorage.getItem("access_token");
+        this.access_token = localStorage.getItem("token");
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.access_token

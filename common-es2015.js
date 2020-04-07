@@ -107,10 +107,10 @@ __webpack_require__.r(__webpack_exports__);
 let EmployeeService = class EmployeeService {
     constructor(http) {
         this.http = http;
-        this.access_token = localStorage.getItem("access_token");
+        this.access_token = localStorage.getItem("token");
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
             "Content-Type": "application/json",
-            Authorization: "Bearer " + this.access_token
+            Authorization: "Bearer " + this.access_token,
         });
         this.options = { headers: this.headers };
         this.employees = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
@@ -125,7 +125,7 @@ let EmployeeService = class EmployeeService {
     get() {
         return this.http
             .get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}/api/employee`, this.options)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(employees => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((employees) => {
             this.employees.next(employees);
             return employees;
         }));
@@ -133,7 +133,7 @@ let EmployeeService = class EmployeeService {
     findById(employeeId) {
         return this.http
             .get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}/api/employee/${employeeId}`, this.options)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(employee => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((employee) => {
             this.employee.next(employee);
             return employee;
         }));
@@ -141,7 +141,7 @@ let EmployeeService = class EmployeeService {
     delete(employeeId) {
         return this.http
             .delete(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}/api/employee/${employeeId}`, this.options)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(response => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((response) => {
             return response;
         }));
     }
@@ -156,11 +156,11 @@ let EmployeeService = class EmployeeService {
             ifsc_code: data.ifsc_code,
             joined_on: joined_on,
             salary: data.salary,
-            number: data.number
+            number: data.number,
         };
         return this.http
             .post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}/api/employee/create`, body, this.options)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(response => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((response) => {
             return response;
         }));
     }
@@ -175,11 +175,11 @@ let EmployeeService = class EmployeeService {
             ifsc_code: data.ifsc_code,
             joined_on: joined_on,
             salary: data.salary,
-            number: data.number
+            number: data.number,
         };
         return this.http
             .post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl}/api/employee/update/${employeeId}`, body, this.options)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(response => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])((response) => {
             return response;
         }));
     }
@@ -224,7 +224,7 @@ let TransferStatusService = class TransferStatusService {
     constructor(http, datePipe) {
         this.http = http;
         this.datePipe = datePipe;
-        this.access_token = localStorage.getItem("access_token");
+        this.access_token = localStorage.getItem("token");
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
             "Content-Type": "application/json",
             Authorization: "Bearer " + this.access_token,

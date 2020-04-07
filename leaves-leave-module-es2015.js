@@ -490,7 +490,7 @@ __webpack_require__.r(__webpack_exports__);
 let LeaveService = class LeaveService {
     constructor(http) {
         this.http = http;
-        this.access_token = localStorage.getItem("access_token");
+        this.access_token = localStorage.getItem("token");
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
             "Content-Type": "application/json",
             Authorization: "Bearer " + this.access_token,
