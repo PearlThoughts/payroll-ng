@@ -196,8 +196,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.submitted = true; // stop here if form is invalid
 
-          console.log(this.empAddForm.value);
-
           if (this.empAddForm.invalid) {
             return;
           }

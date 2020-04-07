@@ -852,7 +852,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AppComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          console.log("app cop");
           this.authService.autoAuthUser();
         }
       }]);
@@ -1014,24 +1013,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../services/auth.service */
+    "./src/app/shared/services/auth.service.ts");
 
     var AuthGuard =
     /*#__PURE__*/
     function () {
-      function AuthGuard(router) {
+      function AuthGuard(router, authService) {
         _classCallCheck(this, AuthGuard);
 
         this.router = router;
+        this.authService = authService;
+        this.userIsAuthenticated = false;
       }
 
       _createClass(AuthGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          if (localStorage.getItem('isLoggedin')) {
+          this.userIsAuthenticated = this.authService.getIsAuth();
+
+          if (this.userIsAuthenticated) {
             return true;
           }
 
-          this.router.navigate(['/login']);
+          this.router.navigate(["/login"]);
           return false;
         }
       }]);
@@ -1042,10 +1051,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AuthGuard.ctorParameters = function () {
       return [{
         type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]
       }];
     };
 
-    AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])], AuthGuard);
+    AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])], AuthGuard);
     /***/
   },
 
@@ -1751,12 +1762,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 var now = new Date();
                 var expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-                console.log(expirationDate);
 
                 _this.saveAuthData(token, expirationDate, _this.userId);
               }
-
-              console.log(1);
             }
 
             return user;
@@ -1779,7 +1787,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.isAuthenticated = true;
             this.userId = authInformation.userId;
             this.setAuthTimer(expiresIn / 1000);
-            console.log("token found");
             this.authStatusListener.next(true);
           }
         }
@@ -1826,7 +1833,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var userId = localStorage.getItem("userId");
 
           if (!token || !expirationDate) {
-            console.log("token not found");
             return;
           }
 

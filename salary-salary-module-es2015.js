@@ -404,7 +404,6 @@ let SalaryService = class SalaryService {
         const date = new Date();
         const from_date = this.datePipe.transform(new Date(date.getFullYear(), date.getMonth() - 1, 27), "y-M-d");
         const to_date = this.datePipe.transform(new Date(date.getFullYear(), date.getMonth(), 26), "y-M-d");
-        console.log(from_date);
         const body = {
             can_detect_lop: status,
         };

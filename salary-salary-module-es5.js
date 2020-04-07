@@ -653,7 +653,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var date = new Date();
           var from_date = this.datePipe.transform(new Date(date.getFullYear(), date.getMonth() - 1, 27), "y-M-d");
           var to_date = this.datePipe.transform(new Date(date.getFullYear(), date.getMonth(), 26), "y-M-d");
-          console.log(from_date);
           var body = {
             can_detect_lop: status
           };

@@ -140,7 +140,6 @@ let AddComponent = class AddComponent {
     onSubmit() {
         this.submitted = true;
         // stop here if form is invalid
-        console.log(this.empAddForm.value);
         if (this.empAddForm.invalid) {
             return;
         }

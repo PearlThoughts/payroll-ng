@@ -154,16 +154,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/services/auth.service */ "./src/app/shared/services/auth.service.ts");
+
 
 
 
 
 let SidebarComponent = class SidebarComponent {
-    constructor(translate, router) {
+    constructor(translate, router, authService) {
         this.translate = translate;
         this.router = router;
+        this.authService = authService;
         this.collapsedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.router.events.subscribe(val => {
+        this.router.events.subscribe((val) => {
             if (val instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"] &&
                 window.innerWidth <= 992 &&
                 this.isToggled()) {
@@ -174,15 +177,15 @@ let SidebarComponent = class SidebarComponent {
     ngOnInit() {
         this.isActive = false;
         this.collapsed = false;
-        this.showMenu = '';
-        this.pushRightClass = 'push-right';
+        this.showMenu = "";
+        this.pushRightClass = "push-right";
     }
     eventCalled() {
         this.isActive = !this.isActive;
     }
     addExpandClass(element) {
         if (element === this.showMenu) {
-            this.showMenu = '0';
+            this.showMenu = "0";
         }
         else {
             this.showMenu = element;
@@ -193,27 +196,28 @@ let SidebarComponent = class SidebarComponent {
         this.collapsedEvent.emit(this.collapsed);
     }
     isToggled() {
-        const dom = document.querySelector('body');
+        const dom = document.querySelector("body");
         return dom.classList.contains(this.pushRightClass);
     }
     toggleSidebar() {
-        const dom = document.querySelector('body');
+        const dom = document.querySelector("body");
         dom.classList.toggle(this.pushRightClass);
     }
     rltAndLtr() {
-        const dom = document.querySelector('body');
-        dom.classList.toggle('rtl');
+        const dom = document.querySelector("body");
+        dom.classList.toggle("rtl");
     }
     changeLang(language) {
         this.translate.use(language);
     }
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        this.authService.logout();
     }
 };
 SidebarComponent.ctorParameters = () => [
     { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
 ];
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -221,11 +225,13 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ], SidebarComponent.prototype, "collapsedEvent", void 0);
 SidebarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-sidebar',
+        selector: "app-sidebar",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./sidebar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/layout/components/sidebar/sidebar.component.html")).default,
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./sidebar.component.scss */ "./src/app/layout/components/sidebar/sidebar.component.scss")).default]
     }),
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        src_app_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
 ], SidebarComponent);
 
 
